@@ -1,11 +1,11 @@
 var express = require('express');
 var app = express();
 
-let path = __dirname + "/views/index.html"
+let path =(rel)=> __dirname + rel;
 
 app.get('/', (req, res) => {
-    res.sendFile(path)
-  })
-
+    res.sendFile(path("/views/index.html"))
+})
+app.use("/public", express.static(path("/public")));
 
 module.exports = app;
