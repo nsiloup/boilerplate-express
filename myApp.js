@@ -43,4 +43,10 @@ app.get('/:word/echo', (req, res)=>{
     res.json({"echo":wrd})
 })
 
+//Get Query Parameter Input from the Client
+app.get('/name', (req, res)=>{
+    let {first:firstName, last:lastName} = req.query;
+    res.json({"name":`${firstName} ${lastName}`});
+})
+
 module.exports = app;
