@@ -3,7 +3,8 @@ let bodyParser = require("body-parser"); //Use body-parser to Parse POST Request
 var express = require('express');
 var app = express();
 
-app.use(bodyParser.urlencoded({"extended": false}));//Use body-parser to Parse POST Requests
+//Use body-parser to Parse POST Requests
+app.use(bodyParser.urlencoded({"extended": false}));
 
 
 let logger = (req, res, next)=>{
@@ -53,7 +54,10 @@ app.get('/name', (req, res)=>{
     res.json({"name":`${firstName} ${lastName}`});
 })
 
-//Use body-parser to Parse POST Requests
-
+//Get Data from POST Requests
+app.post('/name', (req, res)=>{
+    let {first:firstName, last:lastName} = req.body;
+    res.json({"name": `${firstName} ${lastName}`})
+});
 
 module.exports = app;
