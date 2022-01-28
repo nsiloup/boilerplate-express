@@ -1,6 +1,10 @@
 require('dotenv').config()
+let bodyParser = require("body-parser"); //Use body-parser to Parse POST Requests
 var express = require('express');
 var app = express();
+
+app.use(bodyParser.urlencoded({"extended": false}));//Use body-parser to Parse POST Requests
+
 
 let logger = (req, res, next)=>{
     console.log(`${req.method} ${req.path} - ${req.ip}`);
@@ -48,5 +52,8 @@ app.get('/name', (req, res)=>{
     let {first:firstName, last:lastName} = req.query;
     res.json({"name":`${firstName} ${lastName}`});
 })
+
+//Use body-parser to Parse POST Requests
+
 
 module.exports = app;
